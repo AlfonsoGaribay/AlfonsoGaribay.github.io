@@ -1,0 +1,170 @@
+body {
+  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+  background: #141414;
+  color: #f8f8ff;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight:lighter;
+  letter-spacing: 4px;
+
+  color: #f8f8ff;
+}
+
+p {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: lighter;
+  color: #f8f8ff;
+}
+
+footer {
+padding-bottom: 40px;
+font-weight: lighter;
+}
+
+.light:hover {
+  padding: 0.3rem 0.1rem 0.3rem 0.9rem;
+  background: linear-gradient(135deg, rgba(255,255,255, 0.1), rgba(255,255,255, 0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px 5px 5px 20px;
+  border: 1px solid rgba(255,255,255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.fullscreen-sections {
+  min-height: 100vh;
+  padding-top: 30vh;
+}
+
+
+/* save this for a later date... */
+.glass {
+  background: linear-gradient(135deg, rgba(255,255,255, 0.1), rgba(255,255,255, 0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.about-topics p {
+  margin-bottom: 2rem;
+}
+
+.seperable {
+  margin-bottom: 0.5rem;
+}
+
+#contentView{
+  padding: 0 20% 0;
+  width: 100%
+}
+
+
+/* ############################################################################
+/* ##############################__Specifics__#################################
+/* ############################################################################
+
+/* ############################################################################
+/* for the hero section and its content */
+#hero-section {
+  text-align: center;
+}
+
+#hero-content {
+  padding-bottom: 45vh;
+}
+
+#hero-content img {
+  height: 25%;
+  width: 25%;
+  padding: 0.5%;
+  border-radius: 100%;
+  background: #ffffff;
+}
+
+#hero-text {
+  margin-top: 5%;
+}
+
+
+/* ############################################################################
+/* for the about section of the page */
+.row {
+  border-radius: 34px;
+  background: transparent;
+
+  padding: 0;
+  margin: auto;
+}
+
+.col{
+  background-color: transparent; /*#292b2c;  for testing use: #22211f*/
+  /* min-width: 80%; */
+  border-radius: 20px;
+  padding: 4% 4% 2%;
+  margin: 5%
+}
+
+
+/* ############################################################################
+/* for the projects section */
+.portfolio-block {
+  width: 10rem;
+  height: 10rem;
+
+  min-width: 10rem;
+  min-height: 10rem;
+  background: white;
+}
+
+.project-card {
+  margin: 0;
+}
+
+.card {
+  margin-left: auto;
+  margin-right: auto;
+  border-color: #141414;
+}
+
+.card-body {
+  background-color: #141414;
+  text-align: center;
+  color: #f8f8ff;
+}
+
+.card-img-top {
+  background-color: grey;
+}
+
+
+#project-title {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+#project-section {
+  margin-top: 3rem;
+}
+
+
+/* ############################################################################
+/* for the contact me section */
+
+.contact-buttons {
+  text-align: right;
+}
+
+.contact-links{
+  margin-bottom: 1.5rem;
+}
+
+#contact-section a {
+  color: #f8f8ff;
+  text-decoration: none;
+
+}
