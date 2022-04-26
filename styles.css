@@ -125,9 +125,36 @@ font-weight: lighter;
   margin: 0;
 }
 
+@media screen and (max-width: 550px) {
+  .project-card {
+    display: flex;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .project-card {
+    display: flex;
+    margin: 0;
+  }
+
+  .card {
+    min-width: 150px;
+  }
+
+  .card-title {
+    margin-bottom: 1em;
+  }
+
+  .card-text {
+    display: none;
+  }
+}
+
 .card {
   margin-left: auto;
   margin-right: auto;
+
   border-color: #141414;
 }
 
