@@ -165,6 +165,10 @@ font-weight: lighter;
   color: #f8f8ff;
 }
 
+.card-text {
+  line-height: 1.5; 
+}
+
 .card-img-top {
   background-color: grey;
 }
