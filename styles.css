@@ -7,7 +7,7 @@ body {
 
 h1, h2, h3, h4, h5 {
   font-family: 'Montserrat', sans-serif;
-  font-weight:lighter;
+  font-weight:light;
   letter-spacing: 4px;
 
   color: #f8f8ff;
@@ -125,15 +125,43 @@ font-weight: lighter;
   margin: 0;
 }
 
+@media screen and (max-width: 550px) {
+  .project-card {
+    display: flex;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .project-card {
+    display: flex;
+    margin: 0;
+  }
+
+  .card {
+    min-width: 150px;
+  }
+
+  .card-title {
+    margin-bottom: 1em;
+  }
+
+  .card-text {
+    display: none;
+  }
+}
+
 .card {
   margin-left: auto;
   margin-right: auto;
+
   border-color: #141414;
 }
 
 .card-body {
   background-color: #141414;
   text-align: center;
+  line-height:110%;
   color: #f8f8ff;
 }
 
