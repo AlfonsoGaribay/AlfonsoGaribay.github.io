@@ -19,6 +19,13 @@ p {
   color: #f8f8ff;
 }
 
+main {
+  position: relative;
+  opacity: 0;
+  filter: blur(10px);
+  transition: opacity 2s ease-in-out, filter 2s ease-in-out;
+}
+
 footer {
 padding-bottom: 40px;
 font-weight: lighter;
@@ -166,7 +173,7 @@ font-weight: lighter;
 }
 
 .card-text {
-  line-height: 1.5; 
+  line-height: 1.5;
 }
 
 .card-img-top {
