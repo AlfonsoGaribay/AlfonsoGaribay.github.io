@@ -1,15 +1,23 @@
 --- 
 export interface props {
     title: string
+    custom: string
 }
 
-const { title } = Astro.props
+const { title, custom } = Astro.props
 ---
 
-<section class="max-w-7xl mx-auto h-[80vh]"> 
-    <div class="flex items-center justify-center h-full">
-        <!-- Your section content here -->
-        <h1 class="text-blue-100 text-GIGA"> {title} </h1>
-        <slot/>
+
+<section id={title} class=`max-w-7xl mx-auto h-[80vh] text-zinc-100 flex justify-center items-center ${custom}`>
+    <div class="min-h-100 ">
+        <h1 class="text-6xl font-header opacity-25 text-left">{title}</h1>
+        <div class="bg-green-900">
+            <slot/>
+        </div>
     </div>
+    
+    
+
 </section>
+  
+  
