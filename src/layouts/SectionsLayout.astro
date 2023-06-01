@@ -5,12 +5,14 @@ export interface props {
 }
 
 const { title, custom } = Astro.props
+
+const defaultStyles = "max-w-screen-2xl mx-auto min-h-[20%] text-zinc-100 flex flex-col justify-between"
 ---
 
 
 <section 
     id={title} 
-    class=`max-w-screen-2xl mx-auto min-h-[20%] text-zinc-100 flex flex-col justify-between py-16  ${custom}`>
+    class=`${defaultStyles} py-16  ${custom}`>
     <div class="min-h-100">
         <h1 class="text-6xl font-header opacity-25 text-left">{title}</h1>
         <div class="">
