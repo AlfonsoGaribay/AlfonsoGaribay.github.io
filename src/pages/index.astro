@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
-import Section from '../layouts/SectionsLayout.astro';
+import SectionsLayout from '../layouts/SectionsLayout.astro';
 import CardDeck from '../components/CardDeck.astro'
 import Hero from '../components/Hero.astro';
 import Footer from '../components/Footer.astro';
@@ -12,10 +12,10 @@ import Footer from '../components/Footer.astro';
 		<Navigation/>
 		<Hero title='Alfonso Garibay' subtitle="Developer & Designer"/>
 		
-		<Section title='about me' custom=''>
+		<SectionsLayout title='about me' custom=''>
 			<div class="flex flex-wrap ">
 				<div class="w-full sm:w-1/2">
-				<!-- Column 1 content -->
+				
 				<div class="font-header text-8xl ">
 					<ul class="content-center">
 					<li id="enthusiastic" class="hover:scale-150 transition-transform duration-300 hover:rotate-3 hover:text-pink-400">Enthusiastic </li>
@@ -27,7 +27,7 @@ import Footer from '../components/Footer.astro';
 				</div>
 				</div>
 				<div class="w-full sm:w-1/2">
-				<!-- Column 2 content -->
+				
 				<p id="description" class="font-nonheader text-4xl ">
 					Hey there, I'm Alfonso, but you can call me Fonzie. 
 					<span class="text-pink-300 hover:rotate-3">
@@ -65,13 +65,13 @@ import Footer from '../components/Footer.astro';
 				</p>
 				</div>
 			</div>
-		</Section>
+		</SectionsLayout>
 
-		<Section title='Works' custom=''>
+		<SectionsLayout title='Works' custom=''>
 			<div class="flex justify-center ">
 				<CardDeck/>
 			</div>
-		</Section>
+		</SectionsLayout>
 
 		<Footer/>
 	</main>
