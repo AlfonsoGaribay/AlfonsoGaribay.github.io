@@ -1,110 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navigation from '../components/Navigation.astro';
-import Section from '../layouts/SectionsLayout.astro';
+import Section from '../layouts/SectionsLayout.astro'
 
-import Card from '../components/Card.astro'
-import Hero from '../components/Hero.astro';
-import Footer from '../components/Footer.astro';
+import Navigation from '../components/Navigation.astro'
+import HeroSection from '../components/sections/HeroSection.astro'
+import AboutSection from '../components/sections/AboutSection.astro'
+import Footer from '../components/Footer.astro'
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
 		<Navigation/>
-		<Hero title='Alfonso Garibay' subtitle="Developer & Designer"/>
-		
-
-		<Section title='about'>
-			<div class="flex flex-wrap ">
-				<div class="w-full sm:w-1/2">
-				  <!-- Column 1 content -->
-				  <div class="mx-auto max-w-sm font-header text-8xl ">
-					<ul class="content-center">
-					  <li id="enthusiastic" class="hover:scale-150 transition-transform duration-300 hover:rotate-3 hover:text-pink-400">Enthusiastic</li>
-					  <li id="developer" class="hover:scale-150 transition-transform duration-300 hover:text-blue-400">developer</li>
-					  <li id="designer" class="hover:scale-150 transition-transform duration-300 hover:text-red-400">designer</li>
-					  <li id="versatile" class="hover:scale-150 transition-transform duration-300 hover:text-yellow-400">versatile</li>
-					  <li id="adventurous" class="hover:scale-150 transition-transform duration-300 hover:text-green-400">Adventurous</li>  
-					</ul>
-				  </div>
-				</div>
-				<div class="w-full sm:w-1/2">
-				  <!-- Column 2 content -->
-				  <p id="description" class="font-nonheader text-4xl ">
-					Hey there, I'm Alfonso, but you can call me Fonzie. 
-					<span class="text-pink-300 hover:rotate-3">
-					  I'm all about design, development, and helping people establish 
-					  their online presence. 
-					</span>
-					
-					With a background in 
-					computer engineering, I've honed my skills in both 
-					hardware and software development, though these days 
-		
-					<span class="text-blue-300">
-					  I primarily focus on web development. 
-					</span>
-					
-					<span class="text-yellow-300">
-					  I've also dabbled
-					in native iOS development
-					</span>
-		
-					, which has added to my versatility.
-					When it comes to design, 
-					<span class="text-red-300">
-					  I'm a big fan of Figma, and I find 
-					  immense joy in crafting beautiful interfaces.
-					</span>
-		
-					<span class="text-green-300">
-					  Oh, and did I 
-					mention that I'm an avid traveler? Exploring different places 
-					and uncovering the common threads that connect us all is 
-					something I truly cherish.
-					</span>
-					 
-				  </p>
-				</div>
-			  </div>
-		</Section>
-
-		<Section title='works' custom=''>
-			<div class="flex flex-wrap text-center ">
-				<div class="w-full sm:w-1/2 md:w-1/3">
-					<!-- Column 1 content -->
-					<Card 
-					title='Design' 
-					body="this is a card with some information in it about the work that ive done" 
-					href="#"
-					/>
-				</div>
-				<div class="w-full sm:w-1/2 md:w-1/3">
-					<!-- Column 2 content -->
-					<Card 
-					title='Web' 
-					body="this is a card with some information in it about the work that ive done" 
-					href="#"
-					/>
-				</div>
-				<div class="w-full sm:w-1/2 md:w-1/3">
-					<!-- Column 3 content -->
-					<Card 
-					title='iOS' 
-					body="this is a card with some information in it about the work that ive done" 
-					href="#"
-					/>
-				</div>
-		  	</div>
-			<h2 class="text-center font-nonheader"> Check out my agency site </h2>
-		</Section>
-
-
-
-		<Section title='contact' custom=''>
-
-		</Section>
-
+		<HeroSection title='Alfonso Garibay' subtitle="Developer & Designer"/>
+		<AboutSection/>
+		<Section title='about'/>
+		<Section title='works'/>
+		<Section title='contact'/>
 		<Footer/>
 	</main>
 </Layout>

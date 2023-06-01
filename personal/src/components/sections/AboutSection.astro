@@ -1,0 +1,46 @@
+---
+export interface props {
+    title: string;
+    subtitle: string;
+}
+
+const { title, subtitile } = Astro.props;
+---
+
+<div class="flex items-center justify-center h-screen">
+    <section class="max-w-1124 mx-auto text-blue-100 h-4/5">
+      <div class="flex flex-wrap h-full justify-center items-center px-6 py-8 md:px-10 md:py-12 lg:px-16 lg:py-20">
+  
+        <div class="w-full md:w-1/2">
+          <div class="mx-auto max-w-sm font-header text-8xl">
+            <ul>
+                <li>Enthusiastic</li>
+                <li>developer</li>
+                <li>designer</li>
+                <li>versatile</li>
+                <li>Adventurous</li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="w-full md:w-1/2">
+          <p class="font-nonheader text-4xl ">
+            Hey there, I'm Alfonso, but you can call me Fonzie. 
+            I'm all about design, development, and helping people 
+            establish their online presence. With a background in 
+            computer engineering, I've honed my skills in both 
+            hardware and software development, though these days 
+            I primarily focus on web development. I've also dabbled
+            in native iOS development, which has added to my versatility.
+            When it comes to design, I'm a big fan of Figma, and I find 
+            immense joy in crafting beautiful interfaces. Oh, and did I 
+            mention that I'm an avid traveler? Exploring different places 
+            and uncovering the common threads that connect us all is 
+            something I truly cherish.
+          </p>
+        </div>
+  
+      </div>
+    </section>
+  </div>
+  
