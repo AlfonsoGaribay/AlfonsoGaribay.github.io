@@ -4,7 +4,7 @@ module.exports = {
 	theme: {
 		extend: {
 			backgroundImage: {
-				'hero-wallpaper': "url('https://github.com/AlfonsoGaribay/AlfonsoGaribay.github.io/blob/Astro-branch/src/imgs/site-wallpaper-min.jpg')",
+				'hero-wallpaper': "url('https://github.com/AlfonsoGaribay/AlfonsoGaribay.github.io/blob/Astro-branch/src/imgs/site-wallpaper-min.jpg?raw=true')",
 			  },
 			  fontFamily: {
 				header: ['Bebas Neue', 'sans-serif'],
