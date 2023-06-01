@@ -3,24 +3,20 @@ export interface Props {
 	title: string;
 	body: string;
 	href: string;
-	src:string
 }
 
-const { href, title, body, src } = Astro.props;
+const { href, title, body } = Astro.props;
 ---
 
-<li class="font-nonheader bg-zinc-800 max-w-lg aspect-square p-4 hover:bg-zinc-700 hover:text-lg duration-300">
+<li class="link-card font-nonheader bg-slate-500 ">
 	<a href={href}>
-		<img src={src} alt="img" class="bg-slate-300 aspect-[3/2] mb-4">
-		<div class="">
-			<h2 class="text-zinc-100 font-bold">
-				{title}
-				<span>&rarr;</span>
-			</h2>
-			<p>
-				{body}
-			</p>
-		</div>
+		<h2 class="text-zinc-100 ">
+			{title}
+			<span>&rarr;</span>
+		</h2>
+		<p>
+			{body}
+		</p>
 	</a>
 </li>
 
