@@ -4,7 +4,7 @@ module.exports = {
 	theme: {
 		extend: {
 			backgroundImage: {
-				'hero-wallpaper': "url('./imgs/Site-wallpaper-min.jpg')",
+				'hero-wallpaper': "url('imgs/site-wallpaper-min.jpg')",
 			  },
 			  fontFamily: {
 				header: ['Bebas Neue', 'sans-serif'],
