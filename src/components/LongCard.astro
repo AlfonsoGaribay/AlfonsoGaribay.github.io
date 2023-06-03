@@ -17,25 +17,27 @@ const {title, subtitle, keyWords,imgUrl,linkTo,custom} = Astro.props
     href={linkTo}
     target="_blank"
 >
-    <img
+    <div class="flex flex-row min-w-min max-xl:flex-col">
+        <img
         class="aspect-auto max-w-sm p-4 min-w-[33%]"
         src={imgUrl}
         alt="img"
-    />
-    <div
-        class="text-purple-200 p-4 text-4xl flex flex-col justify-center gap-6 bg-purple-900 font-header rounded-lg my-4 max-md:hidden"
-    >
-   
-    <h4>{keyWords[0]}</h4>
-    <h4>{keyWords[1]}</h4>
-    <h4>{keyWords[2]}</h4>
-    <h4>{keyWords[3]}</h4>
-    
+        />
+        <div
+            class="text-purple-200 p-4 text-4xl flex flex-col justify-center gap-6 bg-purple-900 font-header rounded-lg my-4 max-md:hidden max-lg:text-xl max-xl:gap-2 max-xl:m-4"
+        >
         
+            <h4>{keyWords[0]}</h4>
+            <h4>{keyWords[1]}</h4>
+            <h4>{keyWords[2]}</h4>
+            <h4>{keyWords[3]}</h4>
+
+        </div> 
     </div>
+
     <div class="bg-zinc7800 p-4">
-        <h2 class="font-bold text-2xl text-purple-400">{title}</h2>
-        <h4 class="font-bold text-2xl text-purple-200 mb-2">{subtitle}</h4>
+        <h2 class="font-bold text-2xl text-purple-400 max-lg:text-4xl max-xl:text-6xl">{title}</h2>
+        <h4 class="font-bold text-2xl text-purple-200 mb-2 max-lg:text-4xl max-xl:text-6xl">{subtitle}</h4>
         <p class="text-lg">
            <slot/>
         </p>
