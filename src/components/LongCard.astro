@@ -1,0 +1,45 @@
+---
+export interface Props {
+    title: string,
+    subtitle: string,
+    keyWords: string[],
+    imgUrl: string,
+    linkTo: string,
+    custom: string
+}
+
+const {title, subtitle, keyWords,imgUrl,linkTo,custom} = Astro.props
+
+---
+
+<a
+    class=`w-full bg-zinc-800 flex flex-row justify-between ${custom}`
+    href={linkTo}
+    target="_blank"
+>
+    <img
+        class="aspect-auto max-w-sm p-4 min-w-[33%]"
+        src={imgUrl}
+        alt="img"
+    />
+    <div
+        class="text-purple-200 p-4 text-4xl flex flex-col justify-center gap-6 bg-purple-900 font-header rounded-lg my-4"
+    >
+   
+    <h4>{keyWords[0]}</h4>
+    <h4>{keyWords[1]}</h4>
+    <h4>{keyWords[2]}</h4>
+    <h4>{keyWords[3]}</h4>
+    
+        
+    </div>
+    <div class="bg-zinc7800 p-4">
+        <h2 class="font-bold text-2xl text-purple-400">{title}</h2>
+        <h4 class="font-bold text-2xl text-purple-200 mb-2">{subtitle}</h4>
+        <p class="text-lg">
+           <slot/>
+        </p>
+    </div>
+</a>
+
+

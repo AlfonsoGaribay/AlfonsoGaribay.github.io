@@ -5,6 +5,7 @@ import SectionsLayout from '../layouts/SectionsLayout.astro';
 import CardDeck from '../components/CardDeck.astro'
 import Hero from '../components/Hero.astro';
 import Footer from '../components/Footer.astro';
+import LongCard from '../components/LongCard.astro';
 ---
 
 <Layout title="Fonzies site">
@@ -109,57 +110,16 @@ import Footer from '../components/Footer.astro';
 		<SectionsLayout title='Works' custom=''>
 			<div class="flex justify-center flex-col gap-4 ">
 				<CardDeck/>
-				<a 
-				class="w-full bg-zinc-800 flex flex-row justify-between" 
-				href="https://www.figma.com/proto/WBtklPScPajjOO5Aqh2vVY/Design-System%3A-LexiJane-Bakery?page-id=0%3A1&type=design&node-id=130-1156&viewport=1416%2C1659%2C0.18&scaling=min-zoom&starting-point-node-id=130%3A1156&show-proto-sidebar=1" target="_blank">
-					
-					<img 
-						class="aspect-auto max-w-sm p-4 min-w-[33%]" 
-						src="https://github.com/AlfonsoGaribay/AlfonsoGaribay.github.io/blob/Astro-branch/src/imgs/LexiJane-min.png?raw=true" 
-						alt="img">
-					<div class="text-pink-200 p-4 text-4xl flex flex-col justify-center gap-6 bg-pink-900 font-header rounded-lg my-4">
-						<h4>Redesign</h4>
-						<h4>Modernize</h4>
-						<h4>Usability</h4>
-						<h4>Familiar</h4>
-					</div>
-					<div class=" bg-zinc7800 p-4 ">
-						<h2 class="font-bold text-2xl text-pink-400">LexiJane Bakery</h2>
-						<h4 class="font-bold text-2xl text-pink-200 mb-2">Design</h4>
-						<p class="text-lg">
-							I undertook a redesign project for a local business in a neighboring city, 
-							focusing on enhancing user-friendliness and aesthetics. By carefully analyzing 
-							the existing layout, I made strategic adjustments to improve usability while maintaining 
-							familiarity for a seamless transition. Through the refinement of the layout, introduction 
-							of a new color palette, and consistent design elements, I created a cohesive and visually 
-							engaging experience. Working closely with the client, I ensured their preferences were 
-							incorporated into the final design. The client was delighted with the outcome, which 
-							successfully combined user-friendly functionality and an appealing aesthetic. Stay tuned 
-							for the upcoming deployment of this exciting project, showcasing my passion for creating 
-							exceptional user experiences.
-						</p>
-					</div>
-				</a>
 				
-				<a 
-				class="w-full bg-zinc-800 flex flex-row-reverse justify-between" 
-				href="https://www.figma.com/proto/WBtklPScPajjOO5Aqh2vVY/Design-System%3A-LexiJane-Bakery?page-id=0%3A1&type=design&node-id=130-1156&viewport=1416%2C1659%2C0.18&scaling=min-zoom&starting-point-node-id=130%3A1156&show-proto-sidebar=1" target="_blank">
-					
-					<img 
-						class="aspect-auto max-w-sm p-4 min-w-[33%]" 
-						src="https://github.com/AlfonsoGaribay/AlfonsoGaribay.github.io/blob/Astro-branch/src/imgs/LexiJane-min.png?raw=true" 
-						alt="img">
-					<div class="text-pink-200 p-4 text-4xl flex flex-col justify-center gap-6 bg-pink-900 font-header rounded-lg my-4">
-						<h4>Redesign</h4>
-						<h4>Modernize</h4>
-						<h4>Usability</h4>
-						<h4>Familiar</h4>
-					</div>
-					<div class=" bg-zinc7800 p-4 ">
-						<h2 class="font-bold text-2xl text-pink-400">LexiJane Bakery</h2>
-						<h4 class="font-bold text-2xl text-pink-200 mb-2">Design</h4>
-						<p class="text-lg">
-							I undertook a redesign project for a local business in a neighboring city, 
+				<LongCard 
+					title='LexiJane Bakery' 
+					subtitle="Design" 
+					keyWords={['Redesign','something','other','whatnot']}
+					imgUrl='https://github.com/AlfonsoGaribay/AlfonsoGaribay.github.io/blob/Astro-branch/src/imgs/LexiJane-min.png?raw=true'
+					linkTo='https://www.figma.com/proto/WBtklPScPajjOO5Aqh2vVY/Design-System%3A-LexiJane-Bakery?page-id=0%3A1&type=design&node-id=130-1156&viewport=1416%2C1659%2C0.18&scaling=min-zoom&starting-point-node-id=130%3A1156&show-proto-sidebar=1'
+					custom=''
+					>
+					I undertook a redesign project for a local business in a neighboring city, 
 							focusing on enhancing user-friendliness and aesthetics. By carefully analyzing 
 							the existing layout, I made strategic adjustments to improve usability while maintaining 
 							familiarity for a seamless transition. Through the refinement of the layout, introduction 
@@ -169,10 +129,27 @@ import Footer from '../components/Footer.astro';
 							successfully combined user-friendly functionality and an appealing aesthetic. Stay tuned 
 							for the upcoming deployment of this exciting project, showcasing my passion for creating 
 							exceptional user experiences.
-						</p>
-					</div>
-					
-				</a>
+				</LongCard>
+
+				<LongCard 
+					title='LexiJane Bakery' 
+					subtitle="Design" 
+					keyWords={['Redesign','something','other','whatnot']}
+					imgUrl='https://github.com/AlfonsoGaribay/AlfonsoGaribay.github.io/blob/Astro-branch/src/imgs/LexiJane-min.png?raw=true'
+					linkTo='https://www.figma.com/proto/WBtklPScPajjOO5Aqh2vVY/Design-System%3A-LexiJane-Bakery?page-id=0%3A1&type=design&node-id=130-1156&viewport=1416%2C1659%2C0.18&scaling=min-zoom&starting-point-node-id=130%3A1156&show-proto-sidebar=1'
+					custom='flex-row-reverse'
+					>
+					I undertook a redesign project for a local business in a neighboring city, 
+							focusing on enhancing user-friendliness and aesthetics. By carefully analyzing 
+							the existing layout, I made strategic adjustments to improve usability while maintaining 
+							familiarity for a seamless transition. Through the refinement of the layout, introduction 
+							of a new color palette, and consistent design elements, I created a cohesive and visually 
+							engaging experience. Working closely with the client, I ensured their preferences were 
+							incorporated into the final design. The client was delighted with the outcome, which 
+							successfully combined user-friendly functionality and an appealing aesthetic. Stay tuned 
+							for the upcoming deployment of this exciting project, showcasing my passion for creating 
+							exceptional user experiences.
+				</LongCard>
 			</div>
 		</SectionsLayout>
 
