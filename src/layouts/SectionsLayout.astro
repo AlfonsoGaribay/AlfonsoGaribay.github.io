@@ -9,11 +9,11 @@ const { title, custom } = Astro.props
 
 <section 
     id={title} 
-    class=`max-w-screen-2xl mx-auto min-h-[20%] text-zinc-100 flex flex-col justify-between py-16  ${custom}`>
-    <div class="min-h-100">
+    class=`max-w-screen-2xl mx-auto min-h-[20%] text-zinc-100 flex flex-col justify-between py-16 ${custom} `>
+    <div class="min-h-100 ">
         <h1 class="text-6xl font-header opacity-25 text-left">{title}</h1>
-        <div class="">
-            <slot class="bg-blue-600"/>
+        <div class=" max-md:flex max-md:justify-center">
+            <slot class=""/>
         </div>
     </div>
 </section>

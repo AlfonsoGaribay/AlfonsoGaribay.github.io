@@ -14,10 +14,10 @@ import LongCard from '../components/LongCard.astro';
 		<Hero title='Alfonso Garibay' subtitle="Developer & Designer"/>
 		
 		<SectionsLayout title='about me' custom=''>
-			<div class="flex flex-wrap">
+			<div class="flex flex-wrap max-md:max-w-xs max-md:text-center ">
 				<div class="w-full sm:w-1/2">
 				
-				<div class="font-header text-8xl ">
+				<div class="font-header text-8xl max-md:text-2xl ">
 					<ul class="content-center">
 					<li id="enthusiastic" class="hover:scale-150 transition-transform duration-300 hover:rotate-3 hover:text-pink-400">Enthusiastic </li>
 					<li id="developer" class="hover:scale-150 transition-transform duration-300 hover:rotate-2 hover:text-blue-400">developer </li>
@@ -27,50 +27,50 @@ import LongCard from '../components/LongCard.astro';
 					</ul>
 				</div>
 				</div>
-				<div class="w-full sm:w-1/2">
+				<div class="w-full sm:w-1/2 ">
 				
-				<p id="description" class="font-nonheader text-4xl ">
-					Hey there, I'm Alfonso, but you can call me Fonzie. 
-					<span class="text-pink-300 hover:rotate-3">
-					I'm all about design, development, and helping people establish 
-					their online presence. 
-					</span>
-					
-					With a background in 
-					computer engineering, I've honed my skills in both 
-					hardware and software development, though these days 
+					<p id="description" class="font-nonheader text-4xl max-md:text-sm ">
+						Hey there, I'm Alfonso, but you can call me Fonzie. 
+						<span class="text-pink-300 hover:rotate-3">
+						I'm all about design, development, and helping people establish 
+						their online presence. 
+						</span>
+						
+						With a background in 
+						computer engineering, I've honed my skills in both 
+						hardware and software development, though these days 
 
-					<span class="text-blue-300">
-					I primarily focus on web development. 
-					</span>
-					
-					<span class="text-yellow-300">
-					I've also dabbled
-					in native iOS development
-					</span>
+						<span class="text-blue-300">
+						I primarily focus on web development. 
+						</span>
+						
+						<span class="text-yellow-300">
+						I've also dabbled
+						in native iOS development
+						</span>
 
-					, which has added to my versatility.
-					When it comes to design, 
-					<span class="text-red-300">
-					I'm a big fan of Figma, and I find 
-					immense joy in crafting beautiful interfaces.
-					</span>
+						, which has added to my versatility.
+						When it comes to design, 
+						<span class="text-red-300">
+						I'm a big fan of Figma, and I find 
+						immense joy in crafting beautiful interfaces.
+						</span>
 
-					<span class="text-green-300">
-					Oh, and did I 
-					mention that I'm an avid traveler? Exploring different places 
-					and uncovering the common threads that connect us all is 
-					something I truly cherish.
-					</span>
-				</p>
+						<span class="text-green-300">
+						Oh, and did I 
+						mention that I'm an avid traveler? Exploring different places 
+						and uncovering the common threads that connect us all is 
+						something I truly cherish.
+						</span>
+					</p>
 				</div>
 			</div>
 		</SectionsLayout>
 
 		<SectionsLayout title='Skills & Training' custom='bg-slate-890'>
-			<div class="flex flex-wrap ">
+			<div class="flex flex-wrap max-md:max-w-xs">
 				<div class="w-full sm:w-1/2 text-right flex flex-col gap-2 ">
-					<div class="border-green-400 border-4 p-2 rounded-lg w-fit text-left">
+					<div class="border-green-400 border-4 p-2 rounded-lg w-fit text-left max-md:min-w-full">
 						<h2 class="text-6xl text-green-400 font-header ">Languages</h2>
 						<ul class="text-4xl">
 							<li>🇺🇸 English</li>
@@ -97,7 +97,7 @@ import LongCard from '../components/LongCard.astro';
 					</div>
 				</div>
 
-				<div class="w-full sm:w-1/2 flex justify-end"> 
+				<div class="w-full sm:w-1/2 flex justify-end max-md:hidden"> 
 					<img 
 						src="https://github.com/AlfonsoGaribay/AlfonsoGaribay.github.io/blob/Astro-branch/src/imgs/portrait-alt-min.png?raw=true" 
 						alt="profile" 
