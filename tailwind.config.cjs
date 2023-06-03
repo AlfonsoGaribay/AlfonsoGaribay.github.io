@@ -12,6 +12,7 @@ module.exports = {
 			  },
 			  fontSize: {
 				'10xl': '10rem',
+				'SemiGiga' : '16rem',
 				'GIGA': '20rem',
 			  }
 		},
