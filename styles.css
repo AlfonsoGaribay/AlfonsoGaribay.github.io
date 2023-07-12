@@ -69,10 +69,9 @@ font-weight: lighter;
 }
 
 .about-topics {
-  border-color: #ffffff;
+  border-color: #fff;
   border-style: solid;
-  border-width: 0.15rem;
-  border-radius: 0.25rem;
+  border-width: 0.15rem;   
 }
 
 .seperable {
@@ -116,7 +115,7 @@ font-weight: lighter;
 /* ############################################################################
 /* for the about section of the page */
 .row {
-  border-radius: 34px;
+
   background: transparent;
 
   padding: 0;
@@ -126,7 +125,6 @@ font-weight: lighter;
 .col{
   background-color: transparent; /*#292b2c;  for testing use: #22211f*/
   /* min-width: 80%; */
-  border-radius: 20px;
   padding: 4% 4% 2%;
   margin: 5%
 }
@@ -138,7 +136,6 @@ font-weight: lighter;
   border-color: #ffffff;
   border-style: solid;
   border-width: 0.15rem;
-  border-radius: 0.25rem;
 }
 
 .portfolio-block {
@@ -222,7 +219,7 @@ font-weight: lighter;
   border-color: #ffffff;
   border-style: solid;
   border-width: 0.15rem;
-  border-radius: 0.25rem;
+  
   
 }
 
