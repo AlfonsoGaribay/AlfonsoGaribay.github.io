@@ -6,9 +6,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <!-- google fonts link  -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,250 +23,55 @@
         main.style.filter = 'blur(0px)'
       }, 1000)
     </script>
+
+  
 </head>
 
 <body>
   <main>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#hero-section">AG</a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="#hero-section"></a>
-            <a class="nav-link" href="#about-section">About</a>
-            <a class="nav-link" href="#projects-section">Projects</a>
-            <a class="nav-link" href="#contact-section">Contact</a>
+    <section id="hero-section" class="h-screen max-w-[1440px] mx-auto grid place-items-center">
+      <div id="hero-section" class="flex items-start h-[80vh] border border-rose-400 p-6">
+        
+        <!-- Hero Text -->
+        <div class="flex flex-col justify-between pr-6  h-[100%] ">
+          <div class="drop-shadow-md bg-rose-400">
+            <h1 class="text-hover text-6xl font-light text-[#e8e7e0]">Developer</h1>
+            <h1 class="text-hover text-5xl font-light text-[#e8e7e0]">Designer</h1>
+            <h1 class="text-hover text-7xl font-light  ext-[#e8e7e0] text-right">Creator.</h1>
           </div>
-        </div>
-      </div>
-    </nav>
     
-    <div class="container-fluid" id="contentView">
-
-      
-
-
-
-      <section id='hero-section' class="fullscreen-sections">
-        <div class="container-fluid" id="hero-content">
-          <img src="imgs/portrait-min.jpg" alt="profile-pic">
-          <div id="hero-text">
-            <h1> Alfonso Garibay </h1>
-            <p> Developer + Designer </p>
-            <!-- <a href="https://alfonsogaribay.netlify.app" target="_blank" style="color:yellow; text-decoration:none;"> Check out the progress on my new site 👨🏻‍🔧</a> -->
-          </div>
-
-        </div>
-      </section>
-
-
-
-      <section id="about-section" class="fullscreen-sections">
-        <div class="container-fluid">
-          <div class="row">
-
-            <div class="col ">
-              <h2> About_me </h2>
-              <p>
-                I have recently launched a boutique web design and development agency, specializing in assisting individuals 
-                and small businesses in establishing and enhancing their online presence.
-              </p>
-              <a href="https://bosque-studio.webflow.io/" target="_blank" style="text-decoration: none; color: #fff; font-weight: 800;">
-                <svg width="50" height="42.78" viewBox="0 0 270 231" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M114.719 11.2683C123.733 -3.75608 146.267 -3.75612 155.281 11.2683L266.827 197.195C275.841 212.22 264.575 231 246.547 231H158.419C153.03 231 148.661 226.795 148.661 221.61C148.661 216.424 153.03 212.22 158.419 212.22H212.006C230.035 212.22 241.301 193.439 232.289 178.415L154.543 48.8293C145.529 33.8049 122.995 33.8049 113.981 48.8293L36.2363 178.415C27.2225 193.439 38.4898 212.22 56.5175 212.22H111.581C116.97 212.22 121.339 216.424 121.339 221.61C121.339 226.795 116.97 231 111.581 231H23.4536C5.42592 231 -5.84141 212.22 3.17244 197.195L114.719 11.2683ZM170.605 188.744C188.632 188.744 199.9 169.963 190.886 154.939L155.394 95.7805C146.38 80.7561 123.845 80.7561 114.832 95.7805L79.3396 154.939C70.3257 169.963 81.5928 188.744 99.6207 188.744H170.605Z" fill="#EBFFFA"/>
-                  </svg>
-                Bosque Studio
-              </a>
-            </div>
-
-            <div class="col about-topics seperable">
-
-              <h4 class="seperable"> Technologies I Use_</h4>
-              <p>
-                <h6>🖥️ Web_</h6> 
-                HTML | CSS | Bootstrap | Webflow
-                <br>
-                JavaScript | jQuery | Express.js | Node.js | EJS
-                <br>
-                React.js| TailwindCSS
-                <br>
-                <br>
-
-                <h6>📱 Mobile_</h6>
-                Swift | Xcode | UIKit
-                <br>
-                <br>
-
-                <h6>🎨 Design_</h6>
-                Figma | Canva 
-                <br>
-                <br>
-
-                <h6>🧐 Currently learning_</h6>
-                Next.js
-              </p>
-
-              <h4> Education and Training_ </h4>
-              <p>
-                <h6>🎓 B.S. Computer Engineering</h6>
-                <ul>
-                  <li>Algorithms and Data structures I & II</li>
-                  <li>Quality Software and Testing</li>
-                  <li>Software Process Management</li>
-                  <li>Software Engineering I & II</li>
-                </ul>
-                <h6>🏅 CodePath Honors iOS developement Certificate</h6>
-              </p>
-              
-              <h4 class="seperable"> Human Languages_ </h4>
-              <p>
-                🇺🇸 English_
-                <br>
-                🇪🇸 Español_
-                <br>
-                🇮🇹 Italiano_
-              </p>
-
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-
-
-      <section id="projects-section" class="fullscreen-sections ">
-        <div class="container-fluid projects-container">
-          <div class="row">
-
-            <div id="project-title">
-              <h2 > Projects </h2>
-              <p>
-                A few of my projects that I really enjoyed.
-              </p>
-            </div>
-
-            <div class="row row-content">
-
-
-              <div class="row card-deck">
-
-                
-
-                <div class="col project-card ">
-                  <div class="card" style="width: 18rem;">
-                    <img src="imgs/LexiJane-min.png" class="card-img-top " alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">LexiJane Bakery</h5>
-                      <p class="card-text">Using Figma I undertook a redesign project for a local business in a neighboring city, focusing on enhancing user-friendliness and aesthetics.  </p>
-                      <a href="https://www.figma.com/proto/WBtklPScPajjOO5Aqh2vVY/Design-System%3A-LexiJane-Bakery?page-id=0%3A1&type=design&node-id=130-1156&viewport=1416%2C1659%2C0.18&scaling=min-zoom&starting-point-node-id=130%3A1156&show-proto-sidebar=1" target="_blank" class="btn btn-dark">View</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col project-card">
-                  <div class="card" style="width: 18rem;">
-                    <img src="imgs/Lav-Zen-Spa.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">
-                        Lavender Zen Spa
-                      </h5>
-                      <p class="card-text"> My client was looking for an idea for her small business site. Working closely with my client and using Figma I achieved this site design. It's been evolving check it out.  </p>
-                      <a href="https://lavender-zen-spa.webflow.io" class="btn btn-dark" target="_blank">View</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col project-card ">
-                  <div class="card" style="width: 18rem;">
-                    <img src="imgs/Hero Section-min.png" class="card-img-top " alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">ChatApp Design</h5>
-                      <p class="card-text">Using Figma I built up this design for a mock-up of a app site. </p>
-                      <a href="https://www.figma.com/file/3IYoDFuMcrNgf2fb0aYh4t/ChatApp-Site-Design-Mock?node-id=0%3A1" target="_blank" class="btn btn-dark">View</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col project-card">
-                  <div class="card" style="width: 18rem;">
-                    <img src="imgs/flix-img-min.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title"> Flixster App</h5>
-                      <p class="card-text">Using UIkit and 'The Movie Database API', I built this app to check out all the latest releases! </p>
-                      <a href="https://github.com/AlfonsoGaribay/flixter_21" class="btn btn-dark" target="_blank">View</a>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="col project-card">
-                  <div class="card" style="width: 18rem;">
-                    <img src="imgs/twitter-clone-img-min.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Twitter Clone</h5>
-                      <p class="card-text"> Using UiKit and Twitters API I made this cool clone app that allows me to view my twitter feed and even tweet straight to my twitter account! </p>
-                      <a href="https://github.com/AlfonsoGaribay/twitter_ios_starter_21" class="btn btn-dark" target="_blank">View</a>
-                    </div>
-                  </div>
-                </div>
-
-
-                
-
-              </div> <!-- last inner row -->
-
-
-
-
-            </div> <!-- inner row-->
-
-
-          </div> <!-- fin row -->
-        </div>
-
-      </section>
-
-
-
-
-
-      <section id="contact-section" class="fullscreen-sections">
-        <div class="container-fluid">
-
-          <div class="row">
-            <div class="col">
-              <h2> Contact_me </h2>
-            </div>
-
-            <div class="col contact-buttons">
-              <h4 class="contact-links"><a class="light" href="mailto:alfonso.sitemail@gmail.com"> Email</a></h4>
-              <h4 class="contact-links"><a class="light" href="https://www.linkedin.com/in/alfonso-garibay/"> LinkedIn</a></h4>
+          <div class="flex flex-col drop-shadow-mds">
+            <p class="italic text-lg text-[#e8e7e0]">
+              "I turn ideas into functional, beautiful websites and digital solutions. 
+              Small businesses don’t always have the time or resources to navigate complex web development. 
+              That’s where I come in. I build modern, scalable websites and no-code solutions that simplify operations, 
+              elevate brands, and help businesses grow—without the typical tech frustrations."
+            </p>
+            <p class="text-lg text-[#e8e7e0] mt-4">- Alfonso Garibay</p>
+    
+            <!-- Hero Links -->
+            <div id="hero-links" class="flex justify-between mt-4">
+              <a href="#" target="_blank" class="text-[#e8e7e0] hover:text-gray-900 transition drop-shadow-md">Instagram</a>
+              <a href="#" target="_blank" class="text-[#e8e7e0] hover:text-gray-900 transition">LinkedIn</a>
+              <a href="#" target="_blank" class="text-[#e8e7e0] hover:text-gray-900 transition drop-shadow-md">Github</a>
+              <a href="https://www.bosquestudio.xyz" target="_blank" class="text-[#e8e7e0] hover:text-gray-900 transition drop-shadow-md">Bosque Studio</a>
             </div>
           </div>
-
         </div>
-      </section>
-
-
-
-
-
-      <footer> ©2023, Alfonso Garibay. All rights reserved. </footer>
-
-      <!--keeps tags within this to keep them in the content view that you are using :) -->
-    </div>
+    
+        <!-- Hero Image -->
+        <div class="flex flex-col justify-between  h-[100%]">
+          <img id="hero-portrait" src="imgs/portrait-min.jpg" alt="hero-portrait" class="size-auto drop-shadow-md">
+          
+        </div>
+    
+      </div>
+    </section>
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="index.js" charset="utf-8"></script>
   </main>
+  <script src="index.js" charset="utf-8"></script>
 </body>
 
 </html>
