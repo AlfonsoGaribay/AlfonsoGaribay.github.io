@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+<BaseLayout title="Blog" description="Notes and essays from Alfonso Garibay.">
+  <section class="grid gap-8">
+    <div class="grid gap-3">
+      <p class="text-xs uppercase tracking-[0.4em] text-ink/60">Archive</p>
+      <h1 class="text-4xl font-semibold">Writing</h1>
+      <p class="max-w-2xl text-base text-ink/70">
+        Long-form notes, studio logs, and small observations on building digital
+        experiences.
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2">
+      {posts.map((post) => (
+        <BlogCard post={post} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

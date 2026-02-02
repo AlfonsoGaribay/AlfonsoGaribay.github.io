@@ -1,0 +1,39 @@
+---
+import '../styles/global.css';
+
+const { title, description } = Astro.props;
+const pageTitle = title ? `${title} | Alfonso Garibay` : 'Alfonso Garibay';
+const pageDescription =
+  description ?? 'Personal site and blog for Alfonso Garibay.';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+  </head>
+  <body class="min-h-screen">
+    <div class="relative overflow-hidden">
+      <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,#f2e2d0,transparent_60%)]"></div>
+      <header class="mx-auto flex w-full max-w-5xl items-center justify-between gap-6 px-6 py-10">
+        <a class="text-lg font-semibold tracking-wide" href="/">Alfonso Garibay</a>
+        <nav class="flex items-center gap-6 text-sm uppercase tracking-[0.2em]">
+          <a class="hover:text-spice" href="/blog">Blog</a>
+          <a class="hover:text-spice" href="/">About</a>
+        </nav>
+      </header>
+
+      <main class="mx-auto w-full max-w-5xl px-6 pb-20">
+        <slot />
+      </main>
+
+      <footer class="mx-auto w-full max-w-5xl px-6 pb-16 text-sm text-ink/70">
+        <div class="border-t border-ink/10 pt-6">
+          <p>Built with Astro + Tailwind.</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

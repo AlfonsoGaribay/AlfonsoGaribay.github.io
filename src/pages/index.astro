@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogCard from '../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const latest = posts.slice(0, 3);
+---
+<BaseLayout title="Home" description="Personal site and blog for Alfonso Garibay.">
+  <section class="grid gap-10">
+    <div class="grid gap-6">
+      <p class="text-xs uppercase tracking-[0.4em] text-ink/60">Journal</p>
+      <h1 class="text-4xl font-semibold leading-tight sm:text-5xl">
+        Craft, culture, and experiments in code and design.
+      </h1>
+      <p class="max-w-2xl text-base text-ink/70">
+        Welcome to the personal corner of Alfonso Garibay. I write about building
+        products, creative technology, and the quiet details that make work feel
+        more intentional.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a
+          class="rounded-full bg-ink px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-paper"
+          href="/blog"
+        >
+          Read the blog
+        </a>
+        <a
+          class="rounded-full border border-ink/20 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-ink"
+          href="mailto:hello@example.com"
+        >
+          Say hello
+        </a>
+      </div>
+    </div>
+
+    <div class="grid gap-6">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-semibold">Latest posts</h2>
+        <a class="text-sm text-ink/70 hover:text-spice" href="/blog">View all</a>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        {latest.map((post) => (
+          <BlogCard post={post} />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
