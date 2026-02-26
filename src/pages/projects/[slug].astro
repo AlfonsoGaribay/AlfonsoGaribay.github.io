@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import sampleBg from '../../assets/sample.bg.png';
+import { projects } from '../../data/projects';
+
+export async function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+---
+<BaseLayout title={project.title} description={project.description}>
+  <article class="mx-auto max-w-3xl">
+    <div class="not-prose mb-8 overflow-hidden rounded-2xl border border-ink/10 bg-white/70 shadow-sm">
+      <div class="relative aspect-[16/9] w-full">
+        <img
+          src={sampleBg.src}
+          alt={`Banner image for ${project.title}`}
+          class="h-full w-full object-cover"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+    <div class="mb-8">
+      <p class="text-xs uppercase tracking-[0.4em] text-ink/60">{project.category}</p>
+      <h1 class="mt-3 text-4xl font-semibold leading-tight">{project.title}</h1>
+      <p class="mt-3 text-base text-ink/70">{project.description}</p>
+      <p class="mt-4 text-sm text-ink/60">{project.year}</p>
+    </div>
+    <div class="prose prose-neutral max-w-none">
+      {project.content.map((paragraph: string) => <p>{paragraph}</p>)}
+    </div>
+  </article>
+</BaseLayout>

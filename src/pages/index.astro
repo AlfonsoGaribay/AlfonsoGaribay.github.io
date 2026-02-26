@@ -1,38 +1,117 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BlogCard from '../components/BlogCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ShaderGradientEmbed from '../components/ShaderGradientEmbed.jsx';
+import sampleBg from '../assets/sample.bg.png';
+import selfPortrait from '../assets/self_v2.png';
+import { projects } from '../data/projects';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 const latest = posts.slice(0, 3);
+const heroWords = [
+  { label: 'Designer', variant: 'hero-word-designer' },
+  { label: 'Explorer', variant: 'hero-word-explorer' },
+  { label: 'Developer', variant: 'hero-word-developer' },
+  { label: 'Storyteller', variant: 'hero-word-storyteller' },
+];
 ---
 <BaseLayout title="Home" description="Personal site and blog for Alfonso Garibay.">
   <section class="grid gap-10">
     <div class="grid gap-6">
-      <p class="text-xs uppercase tracking-[0.4em] text-ink/60">Journal</p>
+      <p class="text-xs uppercase tracking-[0.4em] text-ink/60">I build thoughtful digital things.</p>
       <h1 class="text-4xl font-semibold leading-tight sm:text-5xl">
-        Craft, culture, and experiments in code and design.
+        Hi, I&apos;m Alfonso
       </h1>
       <p class="max-w-2xl text-base text-ink/70">
-        Welcome to the personal corner of Alfonso Garibay. I write about building
-        products, creative technology, and the quiet details that make work feel
-        more intentional.
+        This is a place for the projects I’m working on, the ideas I’m exploring, and the things I’m learning along the way.
       </p>
       <div class="flex flex-wrap gap-4">
         <a
           class="rounded-full bg-ink px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-paper"
-          href="/blog"
+          href="/projects"
         >
-          Read the blog
+          View projects
         </a>
         <a
           class="rounded-full border border-ink/20 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-ink"
-          href="mailto:hello@example.com"
+          href="/blog"
         >
-          Say hello
+          Read writing
         </a>
+      </div>
+    </div>
+
+    <div class="relative h-[400px] w-full overflow-hidden rounded-2xl border border-ink/10 bg-white/60">
+      <div class="h-full w-full">
+        <ShaderGradientEmbed client:visible />
+      </div>
+      <div class="pointer-events-none absolute inset-0 grid place-items-center">
+        <p
+          id="hero-cycle-word"
+          data-words={JSON.stringify(heroWords)}
+          class={`hero-cycle-word ${heroWords[0].variant} text-4xl text-ink/90 sm:text-5xl`}
+        >
+          {heroWords[0].label}
+        </p>
+      </div>
+    </div>
+
+    <div class="grid gap-6">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-semibold">About</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-12">
+        <div class="md:col-span-4">
+          <div class="relative aspect-[4/5] w-full max-w-[260px] overflow-hidden rounded-2xl border border-ink/10 bg-white/60 shadow-sm">
+            <img
+              src={selfPortrait.src}
+              alt="Portrait of Alfonso"
+              class="absolute inset-0 h-full w-full object-cover object-center"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div class="md:col-span-8 md:justify-self-end">
+          <div class="max-w-3xl">
+            <h3 class="text-2xl font-semibold leading-tight text-ink">
+              I’m Alfonso — a designer, developer, and builder.
+            </h3>
+            <div class="mt-4 space-y-4 text-base text-ink/70">
+              <p>
+              I’m interested in systems, thoughtful design, and the intersection of technology and creativity.
+              </p>
+              <p>
+                Most of what I do involves exploring ideas, building projects, and sharing what I learn along the way.
+              </p>
+              <p>This site is where I keep track of that process.</p>
+            </div>
+            <div class="mt-6">
+              <a
+                class="inline-flex rounded-full border border-ink/20 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-ink transition hover:border-ink/30 hover:-translate-y-1"
+                href="/blog"
+              >
+                Read writing
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid gap-6">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-semibold">Projects</h2>
+        <a class="text-sm text-ink/70 hover:text-spice" href="/projects">View all</a>
+      </div>
+      <div class="grid gap-6">
+        {projects.map((project) => (
+          <ProjectCard project={project} imageSrc={sampleBg.src} href={`/projects/${project.slug}`} />
+        ))}
       </div>
     </div>
 
@@ -49,3 +128,126 @@ const latest = posts.slice(0, 3);
     </div>
   </section>
 </BaseLayout>
+
+<script is:inline>
+  (() => {
+    const el = document.getElementById('hero-cycle-word');
+    if (!el) return;
+
+    const words = JSON.parse(el.getAttribute('data-words') || '[]');
+    if (!Array.isArray(words) || words.length <= 1) return;
+    if (!words.every((word) => word && typeof word.label === 'string')) return;
+
+    const variantClasses = [
+      ...new Set(
+        words
+          .map((word) => (typeof word.variant === 'string' ? word.variant : ''))
+          .filter(Boolean)
+      ),
+    ];
+
+    const applyWord = (word) => {
+      el.textContent = word.label;
+      if (variantClasses.length) {
+        el.classList.remove(...variantClasses);
+        if (word.variant) el.classList.add(word.variant);
+      }
+    };
+
+    let index = 0;
+    const holdMs = 1900;
+    const swapDelayMs = 260;
+    const enterDurationMs = 520;
+
+    const cycle = () => {
+      el.classList.add('is-leaving');
+
+      window.setTimeout(() => {
+        index = (index + 1) % words.length;
+        applyWord(words[index]);
+        el.classList.remove('is-leaving');
+        el.classList.add('is-entering');
+
+        window.setTimeout(() => {
+          el.classList.remove('is-entering');
+        }, enterDurationMs);
+      }, swapDelayMs);
+    };
+
+    window.setInterval(cycle, holdMs);
+  })();
+</script>
+
+<style>
+  .hero-cycle-word {
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    font-style: normal;
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+    transition:
+      opacity 320ms ease,
+      transform 320ms ease,
+      filter 320ms ease;
+    will-change: opacity, transform, filter;
+  }
+
+  .hero-word-designer {
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+
+  .hero-word-explorer {
+    letter-spacing: 0.09em;
+    font-weight: 500;
+  }
+
+  .hero-word-developer {
+    letter-spacing: 0.05em;
+    font-weight: 650;
+  }
+
+  .hero-word-storyteller {
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  .hero-cycle-word.is-leaving {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(3px);
+  }
+
+  .hero-cycle-word.is-entering {
+    opacity: 0;
+    transform: translateY(-8px);
+    filter: blur(3px);
+    animation: hero-word-enter 520ms cubic-bezier(0.33, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes hero-word-enter {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+      filter: blur(3px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-cycle-word,
+    .hero-cycle-word.is-leaving,
+    .hero-cycle-word.is-entering {
+      animation: none;
+      transition: none;
+      transform: none;
+      filter: none;
+    }
+  }
+</style>

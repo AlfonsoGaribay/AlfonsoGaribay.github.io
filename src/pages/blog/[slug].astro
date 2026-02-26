@@ -14,7 +14,27 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 ---
 <BaseLayout title={post.data.title} description={post.data.description}>
-  <article class="prose prose-neutral max-w-3xl">
+  <article class="mx-auto max-w-3xl">
+    <div class="not-prose mb-8 overflow-hidden rounded-2xl border border-ink/10 bg-white/70 shadow-sm">
+      <div class="relative aspect-[16/9] w-full">
+        {post.data.heroImage ? (
+          <img
+            src={post.data.heroImage.src}
+            alt={`Banner image for ${post.data.title}`}
+            class="h-full w-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        ) : (
+          <div class="flex h-full w-full items-end bg-gradient-to-br from-sand via-white to-amber-100 p-6">
+            <div class="rounded-lg border border-white/60 bg-white/70 px-4 py-3 backdrop-blur">
+              <p class="text-[11px] uppercase tracking-[0.25em] text-ink/60">Banner image</p>
+              <p class="mt-1 text-sm text-ink/80">Add `heroImage` to this post frontmatter to display a cover.</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
     <div class="mb-8">
       <p class="text-xs uppercase tracking-[0.4em] text-ink/60">{post.data.tags?.[0] ?? 'Essay'}</p>
       <h1 class="mt-3 text-4xl font-semibold leading-tight">{post.data.title}</h1>
@@ -27,6 +47,8 @@ const { Content } = await post.render();
         })}
       </time>
     </div>
-    <Content />
+    <div class="prose prose-neutral max-w-none">
+      <Content />
+    </div>
   </article>
 </BaseLayout>

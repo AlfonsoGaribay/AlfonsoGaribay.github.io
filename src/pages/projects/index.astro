@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import sampleBg from '../../assets/sample.bg.png';
+import { projects } from '../../data/projects';
+---
+<BaseLayout title="Projects" description="Selected projects and experiments by Alfonso Garibay.">
+  <section class="grid gap-8">
+    <div class="grid gap-4">
+      <p class="text-xs uppercase tracking-[0.4em] text-ink/60">Projects</p>
+      <h1 class="text-4xl font-semibold leading-tight sm:text-5xl">Selected work and experiments</h1>
+      <p class="max-w-2xl text-base text-ink/70">
+        A growing collection of product, design, and interface explorations. For now, this page includes three sample projects.
+      </p>
+    </div>
+
+    <div class="grid gap-6">
+      {projects.map((project) => (
+        <ProjectCard project={project} imageSrc={sampleBg.src} href={`/projects/${project.slug}`} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

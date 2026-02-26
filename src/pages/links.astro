@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const linkItems = [
+  {
+    label: 'Bosque Studio',
+    href: 'https://bosque-studio.webflow.io/',
+    description: 'Web design and development as a subscription.',
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/alfonso-garibay/',
+    description: 'Professional updates and work history.',
+  },
+  {
+    label: 'GitHub',
+    href: 'https://github.com/AlfonsoGaribay',
+    description: 'Code, experiments, and open-source projects.',
+  },
+  {
+    label: 'Blog',
+    href: '/blog',
+    description: 'Writing on craft, design, and development.',
+  },
+];
+---
+
+<BaseLayout title="Links" description="A quick directory of Alfonso Garibay links.">
+  <section class="mx-auto grid w-full max-w-2xl gap-8">
+    <div class="grid gap-3 text-center">
+      <p class="text-xs uppercase tracking-[0.4em] text-ink/60">Directory</p>
+      <h1 class="text-4xl font-semibold sm:text-5xl">Links</h1>
+      <p class="text-base text-ink/70">
+        Find the fastest path to connect, follow, or browse recent work.
+      </p>
+    </div>
+
+    <div class="grid gap-4">
+      {linkItems.map((item) => (
+        <a
+          href={item.href}
+          class="group rounded-2xl border border-ink/15 bg-white/70 px-5 py-4 transition duration-300 hover:-translate-y-0.5 hover:border-spice/60 hover:bg-white"
+          target={item.href.startsWith('http') ? '_blank' : undefined}
+          rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+        >
+          <div class="flex items-center justify-between gap-4">
+            <div class="grid gap-1">
+              <p class="text-lg font-semibold">{item.label}</p>
+              <p class="text-sm text-ink/70">{item.description}</p>
+            </div>
+            <span class="text-xs uppercase tracking-[0.3em] text-ink/45 transition group-hover:text-spice">
+              Visit
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
