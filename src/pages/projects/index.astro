@@ -2,7 +2,13 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import sampleBg from '../../assets/sample.bg.png';
-import { projects } from '../../data/projects';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort((a, b) => {
+  const aDate = a.data.pubDate?.valueOf() ?? 0;
+  const bDate = b.data.pubDate?.valueOf() ?? 0;
+  return bDate - aDate;
+});
 ---
 <BaseLayout title="Projects" description="Selected projects and experiments by Alfonso Garibay.">
   <section class="grid gap-8">
@@ -16,7 +22,15 @@ import { projects } from '../../data/projects';
 
     <div class="grid gap-6">
       {projects.map((project) => (
-        <ProjectCard project={project} imageSrc={sampleBg.src} href={`/projects/${project.slug}`} />
+        <ProjectCard
+          project={{
+            title: project.data.title,
+            description: project.data.description,
+            category: project.data.category,
+          }}
+          imageSrc={sampleBg.src}
+          href={`/projects/${project.slug}`}
+        />
       ))}
     </div>
   </section>

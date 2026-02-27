@@ -11,12 +11,11 @@ const { project, imageSrc, href } = Astro.props;
       <img
         src={imageSrc}
         alt=""
-        class="absolute inset-0 h-full w-full object-cover grayscale-[55%] transition duration-500 group-hover:scale-[1.02] group-hover:grayscale-0 group-focus-visible:grayscale-0"
+        class="absolute inset-0 h-full w-full object-cover"
         loading="lazy"
         decoding="async"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/25 to-transparent"></div>
-      <div class="absolute inset-0 bg-white/5"></div>
       <div class="absolute bottom-0 left-0 p-6 sm:p-8">
         <p class="text-xs uppercase tracking-[0.3em] text-paper/80">
           {project.category ?? 'Project'}
@@ -34,12 +33,11 @@ const { project, imageSrc, href } = Astro.props;
       <img
         src={imageSrc}
         alt=""
-        class="absolute inset-0 h-full w-full object-cover grayscale-[55%] transition duration-500 group-hover:scale-[1.02] group-hover:grayscale-0"
+        class="absolute inset-0 h-full w-full object-cover"
         loading="lazy"
         decoding="async"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/25 to-transparent"></div>
-      <div class="absolute inset-0 bg-white/5"></div>
       <div class="absolute bottom-0 left-0 p-6 sm:p-8">
         <p class="text-xs uppercase tracking-[0.3em] text-paper/80">
           {project.category ?? 'Project'}

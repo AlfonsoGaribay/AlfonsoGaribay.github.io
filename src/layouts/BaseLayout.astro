@@ -17,13 +17,40 @@ const pageDescription =
   <body class="min-h-screen">
     <div class="page-fade-in relative flex min-h-screen flex-col overflow-hidden">
       <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,#f2e2d0,transparent_60%)]"></div>
-      <header class="mx-auto flex w-full max-w-5xl items-center justify-between gap-6 px-6 py-10">
+      <header class="relative mx-auto flex w-full max-w-5xl items-center justify-between gap-6 px-6 py-10">
         <a class="text-lg font-semibold tracking-wide" href="/">Alfonso Garibay</a>
-        <nav class="flex items-center gap-6 text-sm uppercase tracking-[0.2em]">
+        <button
+          id="mobile-nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-site-nav"
+          aria-label="Toggle navigation"
+          data-open="false"
+          class="inline-flex items-center gap-2 rounded-full border border-ink/20 bg-white/70 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-ink transition duration-300 hover:-translate-y-0.5 hover:border-ink/35 hover:bg-white md:hidden"
+        >
+          <span>Menu</span>
+          <span class="hamburger-lines" aria-hidden="true">
+            <span class="hamburger-line-top"></span>
+            <span class="hamburger-line-middle"></span>
+            <span class="hamburger-line-bottom"></span>
+          </span>
+        </button>
+        <nav class="hidden items-center gap-6 text-sm uppercase tracking-[0.2em] md:flex">
           <a class="hover:text-spice" href="/">About</a>
           <a class="hover:text-spice" href="/projects">Projects</a>
           <a class="hover:text-spice" href="/blog">Blog</a>
           <a class="hover:text-spice" href="/links">Links</a>
+        </nav>
+        <nav
+          id="mobile-site-nav"
+          aria-hidden="true"
+          data-open="false"
+          class="absolute right-6 top-[calc(100%-0.25rem)] z-20 grid w-[min(18rem,calc(100vw-3rem))] gap-2 rounded-2xl border border-ink/15 bg-paper/95 p-4 text-xs uppercase tracking-[0.24em] text-ink shadow-lg backdrop-blur transition duration-300 md:hidden"
+        >
+          <a class="rounded-xl border border-transparent px-3 py-2 transition hover:-translate-y-0.5 hover:border-ink/20 hover:bg-white/70" href="/">About</a>
+          <a class="rounded-xl border border-transparent px-3 py-2 transition hover:-translate-y-0.5 hover:border-ink/20 hover:bg-white/70" href="/projects">Projects</a>
+          <a class="rounded-xl border border-transparent px-3 py-2 transition hover:-translate-y-0.5 hover:border-ink/20 hover:bg-white/70" href="/blog">Blog</a>
+          <a class="rounded-xl border border-transparent px-3 py-2 transition hover:-translate-y-0.5 hover:border-ink/20 hover:bg-white/70" href="/links">Links</a>
         </nav>
       </header>
 
@@ -37,5 +64,104 @@ const pageDescription =
         </div>
       </footer>
     </div>
+    <script is:inline>
+      (() => {
+        const toggle = document.getElementById('mobile-nav-toggle');
+        const menu = document.getElementById('mobile-site-nav');
+        if (!toggle || !menu) return;
+
+        const setOpen = (isOpen) => {
+          toggle.setAttribute('data-open', isOpen ? 'true' : 'false');
+          toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          menu.setAttribute('data-open', isOpen ? 'true' : 'false');
+          menu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+        };
+
+        const closeMenu = () => setOpen(false);
+        const openMenu = () => setOpen(true);
+
+        toggle.addEventListener('click', () => {
+          const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+          if (isOpen) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        });
+
+        menu.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', closeMenu);
+        });
+
+        document.addEventListener('click', (event) => {
+          const target = event.target;
+          if (!(target instanceof Node)) return;
+          if (menu.contains(target) || toggle.contains(target)) return;
+          closeMenu();
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') closeMenu();
+        });
+
+        const desktopMedia = window.matchMedia('(min-width: 768px)');
+        const closeOnDesktop = (e) => {
+          if (e.matches) closeMenu();
+        };
+        if (desktopMedia.addEventListener) {
+          desktopMedia.addEventListener('change', closeOnDesktop);
+        } else {
+          desktopMedia.addListener(closeOnDesktop);
+        }
+      })();
+    </script>
   </body>
 </html>
+
+<style>
+  .hamburger-lines {
+    display: grid;
+    gap: 3px;
+  }
+
+  .hamburger-lines span {
+    display: block;
+    width: 14px;
+    height: 1px;
+    background: currentColor;
+    transition:
+      transform 220ms ease,
+      opacity 220ms ease;
+  }
+
+  #mobile-nav-toggle[data-open='true'] .hamburger-line-top {
+    transform: translateY(4px) rotate(45deg);
+  }
+
+  #mobile-nav-toggle[data-open='true'] .hamburger-line-middle {
+    opacity: 0;
+  }
+
+  #mobile-nav-toggle[data-open='true'] .hamburger-line-bottom {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+
+  #mobile-site-nav[data-open='false'] {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+    pointer-events: none;
+  }
+
+  #mobile-site-nav[data-open='true'] {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hamburger-lines span,
+    #mobile-site-nav {
+      transition: none;
+    }
+  }
+</style>

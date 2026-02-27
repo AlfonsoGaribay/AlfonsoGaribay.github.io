@@ -5,58 +5,62 @@ import ProjectCard from '../components/ProjectCard.astro';
 import ShaderGradientEmbed from '../components/ShaderGradientEmbed.jsx';
 import sampleBg from '../assets/sample.bg.png';
 import selfPortrait from '../assets/self_v2.png';
-import { projects } from '../data/projects';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+const projects = (await getCollection('projects')).sort((a, b) => {
+  const aDate = a.data.pubDate?.valueOf() ?? 0;
+  const bDate = b.data.pubDate?.valueOf() ?? 0;
+  return bDate - aDate;
+});
 const latest = posts.slice(0, 3);
 const heroWords = [
   { label: 'Designer', variant: 'hero-word-designer' },
-  { label: 'Explorer', variant: 'hero-word-explorer' },
   { label: 'Developer', variant: 'hero-word-developer' },
+  { label: 'Builder', variant: 'hero-word-builder' },
   { label: 'Storyteller', variant: 'hero-word-storyteller' },
+  { label: 'Alfonso', isName: true },
 ];
 ---
 <BaseLayout title="Home" description="Personal site and blog for Alfonso Garibay.">
   <section class="grid gap-10">
-    <div class="grid gap-6">
-      <p class="text-xs uppercase tracking-[0.4em] text-ink/60">I build thoughtful digital things.</p>
-      <h1 class="text-4xl font-semibold leading-tight sm:text-5xl">
-        Hi, I&apos;m Alfonso
-      </h1>
-      <p class="max-w-2xl text-base text-ink/70">
-        This is a place for the projects I’m working on, the ideas I’m exploring, and the things I’m learning along the way.
-      </p>
-      <div class="flex flex-wrap gap-4">
-        <a
-          class="rounded-full bg-ink px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-paper"
-          href="/projects"
-        >
-          View projects
-        </a>
-        <a
-          class="rounded-full border border-ink/20 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-ink"
-          href="/blog"
-        >
-          Read writing
-        </a>
-      </div>
-    </div>
-
-    <div class="relative h-[400px] w-full overflow-hidden rounded-2xl border border-ink/10 bg-white/60">
-      <div class="h-full w-full">
+    <div class="relative min-h-[460px] w-full overflow-hidden rounded-2xl border border-ink/10 bg-white/60">
+      <div class="absolute inset-0">
         <ShaderGradientEmbed client:visible />
       </div>
-      <div class="pointer-events-none absolute inset-0 grid place-items-center">
-        <p
-          id="hero-cycle-word"
-          data-words={JSON.stringify(heroWords)}
-          class={`hero-cycle-word ${heroWords[0].variant} text-4xl text-ink/90 sm:text-5xl`}
-        >
-          {heroWords[0].label}
-        </p>
+      <div class="absolute inset-0 bg-paper/20"></div>
+      <div class="relative z-10 flex h-full items-end p-6 sm:p-10">
+        <div class="grid gap-6">
+          <p class="text-xs uppercase tracking-[0.4em] text-ink/70">I build thoughtful digital things.</p>
+          <h1 class="text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+            Hi, I&apos;m <span id="hero-cycle-prefix" class="hero-cycle-prefix hidden">a </span><span
+              id="hero-cycle-word"
+              data-words={JSON.stringify(heroWords)}
+              class="hero-cycle-word"
+            >
+              Alfonso
+            </span>
+          </h1>
+          <p class="max-w-2xl text-base text-ink/80">
+            This is a place for the projects I’m working on, the ideas I’m exploring, and the things I’m learning along the way.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a
+              class="inline-flex rounded-full border border-ink bg-ink px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-paper transition duration-300 hover:-translate-y-1 hover:border-ink/80 hover:bg-ink/90"
+              href="/projects"
+            >
+              View projects
+            </a>
+            <a
+              class="inline-flex rounded-full border border-ink/30 bg-paper/50 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-ink transition duration-300 hover:-translate-y-1 hover:border-ink/40 hover:bg-paper/70"
+              href="/blog"
+            >
+              Read writing
+            </a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -110,7 +114,15 @@ const heroWords = [
       </div>
       <div class="grid gap-6">
         {projects.map((project) => (
-          <ProjectCard project={project} imageSrc={sampleBg.src} href={`/projects/${project.slug}`} />
+          <ProjectCard
+            project={{
+              title: project.data.title,
+              description: project.data.description,
+              category: project.data.category,
+            }}
+            imageSrc={sampleBg.src}
+            href={`/projects/${project.slug}`}
+          />
         ))}
       </div>
     </div>
@@ -132,10 +144,11 @@ const heroWords = [
 <script is:inline>
   (() => {
     const el = document.getElementById('hero-cycle-word');
-    if (!el) return;
+    const prefixEl = document.getElementById('hero-cycle-prefix');
+    if (!el || !prefixEl) return;
 
     const words = JSON.parse(el.getAttribute('data-words') || '[]');
-    if (!Array.isArray(words) || words.length <= 1) return;
+    if (!Array.isArray(words) || words.length < 1) return;
     if (!words.every((word) => word && typeof word.label === 'string')) return;
 
     const variantClasses = [
@@ -147,7 +160,13 @@ const heroWords = [
     ];
 
     const applyWord = (word) => {
-      el.textContent = word.label;
+      if (word.isName) {
+        prefixEl.classList.add('hidden');
+        el.textContent = 'Alfonso';
+      } else {
+        prefixEl.classList.remove('hidden');
+        el.textContent = `${word.label}.`;
+      }
       if (variantClasses.length) {
         el.classList.remove(...variantClasses);
         if (word.variant) el.classList.add(word.variant);
@@ -155,7 +174,8 @@ const heroWords = [
     };
 
     let index = 0;
-    const holdMs = 1900;
+    const startDelayMs = 3000;
+    const holdMs = 2400;
     const swapDelayMs = 260;
     const enterDurationMs = 520;
 
@@ -174,7 +194,10 @@ const heroWords = [
       }, swapDelayMs);
     };
 
-    window.setInterval(cycle, holdMs);
+    window.setTimeout(() => {
+      applyWord(words[index]);
+      window.setInterval(cycle, holdMs);
+    }, startDelayMs);
   })();
 </script>
 
@@ -193,19 +216,25 @@ const heroWords = [
     will-change: opacity, transform, filter;
   }
 
+  .hero-cycle-prefix {
+    font-style: normal;
+    letter-spacing: 0;
+    font-weight: inherit;
+  }
+
   .hero-word-designer {
     letter-spacing: 0.12em;
     font-weight: 600;
   }
 
-  .hero-word-explorer {
-    letter-spacing: 0.09em;
-    font-weight: 500;
-  }
-
   .hero-word-developer {
     letter-spacing: 0.05em;
     font-weight: 650;
+  }
+
+  .hero-word-builder {
+    letter-spacing: 0.08em;
+    font-weight: 560;
   }
 
   .hero-word-storyteller {

@@ -6,6 +6,19 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+const tagMap = new Map();
+for (const post of posts) {
+  for (const tag of post.data.tags ?? []) {
+    const normalizedTag = tag.trim().toLowerCase();
+    if (!normalizedTag) continue;
+    if (!tagMap.has(normalizedTag)) tagMap.set(normalizedTag, tag.trim());
+  }
+}
+
+const allTags = [...tagMap.entries()]
+  .sort((a, b) => a[1].localeCompare(b[1]))
+  .map(([value, label]) => ({ value, label }));
 ---
 <BaseLayout title="Blog" description="Notes and essays from Alfonso Garibay.">
   <section class="grid gap-8">
@@ -16,12 +29,119 @@ const posts = (await getCollection('blog')).sort(
         Long-form notes, studio logs, and small observations on building digital
         experiences.
       </p>
+      {allTags.length ? (
+        <div id="blog-tag-filters" class="mt-2 flex flex-wrap gap-2">
+          <button
+            type="button"
+            data-tag=""
+            data-active="true"
+            aria-pressed="true"
+            class="blog-tag-chip rounded-full border border-ink/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-ink"
+          >
+            All
+          </button>
+          {allTags.map((tag) => (
+            <button
+              type="button"
+              data-tag={tag.value}
+              data-active="false"
+              aria-pressed="false"
+              class="blog-tag-chip rounded-full border border-ink/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-ink"
+            >
+              {tag.label}
+            </button>
+          ))}
+        </div>
+      ) : null}
     </div>
 
-    <div class="grid gap-6 md:grid-cols-2">
+    <div id="blog-post-grid" class="grid gap-6 md:grid-cols-2">
       {posts.map((post) => (
-        <BlogCard post={post} />
+        <div data-tags={post.data.tags.map((tag) => tag.trim().toLowerCase()).filter(Boolean).join('|')}>
+          <BlogCard post={post} />
+        </div>
       ))}
     </div>
   </section>
 </BaseLayout>
+
+<script is:inline>
+  (() => {
+    const filterRoot = document.getElementById('blog-tag-filters');
+    const postGrid = document.getElementById('blog-post-grid');
+    if (!filterRoot || !postGrid) return;
+
+    const buttons = Array.from(filterRoot.querySelectorAll('[data-tag]'));
+    const items = Array.from(postGrid.querySelectorAll('[data-tags]'));
+    if (!buttons.length || !items.length) return;
+
+    const knownTags = new Set(
+      buttons.map((button) => button.getAttribute('data-tag') || '')
+    );
+    const params = new URLSearchParams(window.location.search);
+    const requestedTag = (params.get('tag') || '').toLowerCase();
+    const initialTag = knownTags.has(requestedTag) ? requestedTag : '';
+    let activeTag = '';
+
+    const setActiveTag = (nextTag, syncUrl = true) => {
+      activeTag = nextTag;
+
+      for (const button of buttons) {
+        const buttonTag = button.getAttribute('data-tag') || '';
+        const isActive = buttonTag === activeTag;
+        button.setAttribute('data-active', isActive ? 'true' : 'false');
+        button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      }
+
+      for (const item of items) {
+        const tags = (item.getAttribute('data-tags') || '').split('|').filter(Boolean);
+        const shouldShow = !activeTag || tags.includes(activeTag);
+        item.classList.toggle('hidden', !shouldShow);
+      }
+
+      if (syncUrl) {
+        const nextParams = new URLSearchParams(window.location.search);
+        if (activeTag) {
+          nextParams.set('tag', activeTag);
+        } else {
+          nextParams.delete('tag');
+        }
+        const nextQuery = nextParams.toString();
+        const nextUrl = `${window.location.pathname}${nextQuery ? `?${nextQuery}` : ''}${window.location.hash}`;
+        window.history.replaceState({}, '', nextUrl);
+      }
+    };
+
+    for (const button of buttons) {
+      button.addEventListener('click', () => {
+        const selectedTag = button.getAttribute('data-tag') || '';
+        const nextTag = selectedTag === activeTag ? '' : selectedTag;
+        setActiveTag(nextTag, true);
+      });
+    }
+
+    setActiveTag(initialTag, false);
+  })();
+</script>
+
+<style>
+  .blog-tag-chip {
+    transition:
+      transform 220ms ease,
+      border-color 220ms ease,
+      background-color 220ms ease,
+      color 220ms ease;
+  }
+
+  .blog-tag-chip:hover {
+    transform: translateY(-1px);
+    border-color: rgb(54 48 40 / 0.45);
+    background: rgb(255 255 255 / 0.8);
+  }
+
+  .blog-tag-chip[data-active='true'] {
+    border-color: rgb(54 48 40 / 0.55);
+    background: rgb(54 48 40 / 0.9);
+    color: rgb(255 246 229 / 1);
+  }
+</style>
